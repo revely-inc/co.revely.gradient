@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com.revely.gradient.iml" filepath="$PROJECT_DIR$/com.revely.gradient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gradient/gradient.iml" filepath="$PROJECT_DIR$/gradient/gradient.iml" />
+    </modules>
+  </component>
+</project>
