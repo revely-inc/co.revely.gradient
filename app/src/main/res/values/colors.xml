@@ -9,4 +9,10 @@
 		<item>#96c93d</item>
 		<item>#f7b733</item>
 	</array>
+
+	<array name="colorTest2">
+		<item>#ff8548</item>
+		<item>#fc4672</item>
+		<item>#ba68c8</item>
+	</array>
 </resources>

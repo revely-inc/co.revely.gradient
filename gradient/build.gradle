@@ -4,7 +4,29 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
-apply plugin: 'kotlin-kapt'
+ext {
+	bintrayRepo = 'maven'
+	bintrayName = 'RevelyGradient'
+
+	publishedGroupId = 'co.revely'
+	libraryName = 'RevelyGradient'
+	artifact = 'gradient'
+
+	libraryDescription = 'An Android library for easy gradient management'
+
+	siteUrl = 'https://gitlab.com/revely/co.revely.gradient'
+	gitUrl = 'https://gitlab.com/revely/co.revely.gradient.git'
+
+	libraryVersion = '0.0.1'
+
+	developerId = 'revely'
+	developerName = 'Revely'
+	developerEmail = 'revely@protonmail.com'
+
+	licenseName = 'Do What The Fuck You Want To Public License, Version 2'
+	licenseUrl = 'http://www.wtfpl.net/'
+	allLicenses = ["WTFPL"]
+}
 
 android {
 	compileSdkVersion 26
@@ -14,7 +36,7 @@ android {
 		minSdkVersion 15
 		targetSdkVersion 26
 		versionCode 1
-		versionName "1.0"
+		versionName "$libraryVersion"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 	}
@@ -34,9 +56,16 @@ dependencies {
 	androidTestImplementation( 'com.android.support.test.espresso:espresso-core:3.0.1', {
 		exclude group: 'com.android.support', module: 'support-annotations'
 	} )
-	compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+	implementation "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
 }
 repositories {
 	mavenCentral()
 }
+
+tasks.withType(Javadoc).all {
+	excludes = ['**/*.kt']
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'

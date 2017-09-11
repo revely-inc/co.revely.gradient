@@ -1,19 +1,18 @@
-package com.revely.gradient.drawables
+package co.revely.gradient.drawables
 
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.util.Log
-
 
 /**
  * Created at 08/09/17
  *
  * @author rbenjami
  */
-class GradientDrawable(
-		type: Type = GradientDrawable.Type.LINEAR,
+class Gradient(
+		private var type: Type = Gradient.Type.LINEAR,
 		colors: IntArray = intArrayOf(Color.WHITE, Color.BLACK),
-		rotation: Float = 0.0f,
+		angle: Float = 0f,
 		tileMode: Shader.TileMode = Shader.TileMode.CLAMP,
 		private var gradientAlpha: Int = 255,
 		private var offsets: FloatArray? = null
@@ -32,22 +31,21 @@ class GradientDrawable(
 	private var centerX: Float = 0.0f
 	private var centerY: Float = 0.0f
 
-	var type: Type = type
-		set(type)
-		{
-			field = type
-			rebuild()
-		}
 	var colors: IntArray = colors
 		set(colors)
 		{
 			field = colors
 			rebuild()
 		}
-	var rotation: Float = rotation
-		set(rotation)
+	var angle: Float = angle
+		set(angle)
 		{
-			field = rotation
+			if (type == Type.RADIAL)
+			{
+				Log.w(this.javaClass.simpleName, "Angle is useless on radial gradient !")
+				return
+			}
+			field = angle
 			rebuild()
 		}
 	var tileMode: Shader.TileMode = tileMode
@@ -56,15 +54,12 @@ class GradientDrawable(
 			field = tileMode
 			rebuild()
 		}
+	var shader: Shader? = null
 
-	private fun gradientPaint(): Paint?
+	fun getPaint(width: Int, height: Int, forceRebuild: Boolean = false): Paint?
 	{
-		if ( rebuildGradient )
+		if (rebuildGradient || forceRebuild)
 		{
-			val height = bounds.height()
-			val width = bounds.width()
-			val radius = Math.max(width, height) / 2.0f
-
 			if (!centerInit)
 			{
 				centerX = width / 2.0f
@@ -72,22 +67,18 @@ class GradientDrawable(
 				centerInit = true
 			}
 
-			val x0 = 0.0f
-			val y0 = height / 2.0f
-			val x1 = width.toFloat()
-			val y1 = height / 2.0f
-
-			val gradient = when (type)
+			val radius = Math.max(width, height) / 2f
+			shader = when (type)
 			{
-				Type.LINEAR -> LinearGradient(x0, y0, x1, y1, colors, offsets, tileMode)
+				Type.LINEAR -> LinearGradient(0f, 0f, width.toFloat(), 0f, colors, offsets, tileMode)
 				Type.RADIAL -> RadialGradient(centerX, centerY, radius, colors, offsets, tileMode)
 				Type.SWEEP -> SweepGradient(centerX, centerY, colors, offsets)
 			}
 
-			rotateMatrix.setRotate(rotation, centerX, centerY)
-			gradient.setLocalMatrix(rotateMatrix)
-			gradientPaint = Paint()
-			gradientPaint.shader = gradient
+			rotateMatrix.setRotate(angle, centerX, centerY)
+			shader!!.setLocalMatrix(rotateMatrix)
+			gradientPaint.reset()
+			gradientPaint.shader = shader
 			gradientPaint.alpha = gradientAlpha
 			rebuildGradient = false
 			return gradientPaint
@@ -97,7 +88,7 @@ class GradientDrawable(
 
 	override fun draw(canvas: Canvas?)
 	{
-		canvas?.drawRect(0.0f, 0.0f, bounds.width().toFloat(), bounds.height().toFloat(), gradientPaint())
+		canvas?.drawRect(0f, 0f, bounds.width().toFloat(), bounds.height().toFloat(), getPaint(bounds.width(), bounds.height()))
 	}
 
 	fun rebuild()

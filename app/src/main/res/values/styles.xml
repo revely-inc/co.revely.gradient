@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
 	<!-- Base application theme. -->
 	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
@@ -8,4 +8,26 @@
 		<item name="colorAccent">@color/colorAccent</item>
 	</style>
 
+	<style name="AppTheme.NoActionBar">
+		<item name="windowActionBar">false</item>
+		<item name="windowNoTitle">true</item>
+	</style>
+
+	<style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+	<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+	<style name="AppThemeTest2" parent="AppTheme.NoActionBar">
+		<item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+		<item name="colorPrimary">#fc4672</item>
+		<item name="colorPrimaryDark">#fc4672</item>
+		<item name="colorAccent">#ff8548</item>
+	</style>
+
+	<style name="AppThemeTest3" parent="AppTheme.NoActionBar">
+		<item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+		<item name="colorPrimary">#4733FF</item>
+		<item name="colorPrimaryDark">#4733FF</item>
+		<item name="colorAccent">#C536FF</item>
+	</style>
 </resources>

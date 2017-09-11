@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:fitsSystemWindows="true"
+	tools:context="com.revely.gradient.Test2Activity">
+
+	<android.support.design.widget.AppBarLayout
+		android:id="@+id/app_bar"
+		android:layout_width="match_parent"
+		android:layout_height="@dimen/app_bar_height"
+		android:fitsSystemWindows="true"
+		android:theme="@style/AppTheme.AppBarOverlay">
+
+		<android.support.design.widget.CollapsingToolbarLayout
+			android:id="@+id/toolbar_layout"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:fitsSystemWindows="true"
+			app:contentScrim="?attr/colorPrimary"
+			app:layout_scrollFlags="scroll|exitUntilCollapsed"
+			app:toolbarId="@+id/toolbar">
+
+			<android.support.v7.widget.Toolbar
+				android:id="@+id/toolbar"
+				android:layout_width="match_parent"
+				android:layout_height="?attr/actionBarSize"
+				app:title="@string/app_name"
+				app:layout_collapseMode="pin"
+				app:popupTheme="@style/AppTheme.PopupOverlay">
+
+				<ImageView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="8dp"
+					android:src="@drawable/ic_arrow_back_black_24dp"
+					android:tint="@android:color/white"
+					/>
+
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_margin="@dimen/text_margin"
+					android:text="Test"
+					android:textSize="18sp"
+					android:textColor="@android:color/white"
+					/>
+			</android.support.v7.widget.Toolbar>
+		</android.support.design.widget.CollapsingToolbarLayout>
+	</android.support.design.widget.AppBarLayout>
+
+	<android.support.v4.widget.NestedScrollView
+		android:background="#312037"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		app:layout_behavior="@string/appbar_scrolling_view_behavior"
+		tools:context="com.revely.gradient.Test2Activity"
+		tools:showIn="@layout/activity_text_gradient">
+
+		<LinearLayout
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:orientation="vertical"
+			>
+
+			<android.support.v7.widget.CardView
+				android:id="@+id/title_card"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="16dp"
+				app:cardBackgroundColor="#5a4161"
+				app:cardCornerRadius="4dp"
+				app:cardElevation="4dp"
+				>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:padding="16dp"
+					>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="9 september, 4:30"
+						android:textSize="12sp"
+						android:textColor="#9389a1"
+						/>
+
+					<TextView
+						android:id="@+id/title_text"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Magnis gratiarum Phoenice excellit."
+						android:letterSpacing="0.1"
+						android:textStyle="bold"
+						android:textSize="26sp"
+						android:textColor="@android:color/white"
+						/>
+				</LinearLayout>
+			</android.support.v7.widget.CardView>
+
+			<android.support.v7.widget.CardView
+				android:id="@+id/title_card2"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_margin="16dp"
+				app:cardBackgroundColor="#5a4161"
+				app:cardCornerRadius="4dp"
+				app:cardElevation="4dp"
+				>
+
+				<LinearLayout
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+					android:padding="16dp"
+					>
+
+					<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="5 september, 2:45"
+						android:textSize="12sp"
+						android:textColor="#9389a1"
+						/>
+
+					<TextView
+						android:id="@+id/title_text2"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Rupium firmare dumos persequendos abscisa acies permissi dumos nec periculose."
+						android:letterSpacing="0.1"
+						android:textStyle="bold"
+						android:textSize="26sp"
+						android:textColor="@android:color/white"
+						/>
+				</LinearLayout>
+			</android.support.v7.widget.CardView>
+		</LinearLayout>
+	</android.support.v4.widget.NestedScrollView>
+
+</android.support.design.widget.CoordinatorLayout>
