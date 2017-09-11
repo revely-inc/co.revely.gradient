@@ -17,6 +17,10 @@
 
 	<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
+	<style name="AppThemeBackgroundGradient" parent="AppTheme.NoActionBar">
+		<item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
+	</style>
+
 	<style name="AppThemeTest2" parent="AppTheme.NoActionBar">
 		<item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
 		<item name="colorPrimary">#fc4672</item>

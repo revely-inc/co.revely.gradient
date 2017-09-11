@@ -107,4 +107,5 @@
 		completions."
 	</string>
 	<string name="title_activity_test3">Test3Activity</string>
+	<string name="section_format">Hello World from section: %1$d</string>
 </resources>

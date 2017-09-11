@@ -1,51 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
 	xmlns:android="http://schemas.android.com/apk/res/android"
-	xmlns:app="http://schemas.android.com/apk/res-auto"
 	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/main_content"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context="com.revely.gradient.TestActivity"
+	android:fitsSystemWindows="true"
+	tools:context="co.revely.gradient.BackgroundGradientActivity"
 	>
 
-	<View
-		android:id="@+id/test_view1"
-		android:layout_width="0dp"
-		android:layout_height="32dp"
-		android:layout_marginTop="8dp"
-		app:layout_constraintTop_toTopOf="parent"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
+	<android.support.v4.view.ViewPager
+		android:id="@+id/container"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
 		/>
-
-	<View
-		android:id="@+id/test_view2"
-		android:layout_width="0dp"
-		android:layout_height="32dp"
-		android:layout_marginTop="8dp"
-		app:layout_constraintTop_toBottomOf="@+id/test_view1"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		/>
-
-	<ImageView
-		android:layout_width="100dp"
-		android:layout_height="100dp"
-		android:layout_marginTop="8dp"
-		android:src="@android:drawable/ic_dialog_map"
-		app:layout_constraintTop_toBottomOf="@+id/test_view2"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		/>
-
-	<View
-		android:id="@+id/test_view3"
-		android:layout_width="100dp"
-		android:layout_height="100dp"
-		android:layout_marginTop="8dp"
-		android:src="@android:drawable/ic_dialog_map"
-		app:layout_constraintTop_toBottomOf="@+id/test_view2"
-		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		/>
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
