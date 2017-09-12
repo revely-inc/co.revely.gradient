@@ -29,12 +29,21 @@
 
 		<activity
 			android:name=".TextGradientActivity"
-			android:theme="@style/AppThemeTest2"
+			android:theme="@style/AppThemeTextGradient"
 			/>
 
 		<activity
 			android:name=".AnimatedGradientActivity"
-			android:theme="@style/AppThemeTest3"
+			android:theme="@style/AppThemeAnimatedGradient"
+			/>
+
+		<activity
+			android:name=".OtherGradientActivity"
+			android:theme="@style/AppThemeOtherGradient"
+			/>
+
+		<activity
+			android:name=".JavaGradientActivity"
 			/>
 	</application>
 

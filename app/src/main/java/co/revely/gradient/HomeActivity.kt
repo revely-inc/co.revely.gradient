@@ -32,4 +32,14 @@ class HomeActivity : AppCompatActivity()
 	{
 		startActivity(Intent(this, AnimatedGradientActivity::class.java))
 	}
+
+	fun otherGradientClicked(view: View)
+	{
+		startActivity(Intent(this, OtherGradientActivity::class.java))
+	}
+
+	fun javaGradientClicked(view: View)
+	{
+		startActivity(Intent(this, JavaGradientActivity::class.java))
+	}
 }

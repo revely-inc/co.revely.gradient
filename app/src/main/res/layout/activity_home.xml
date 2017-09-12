@@ -29,4 +29,20 @@
 		android:text="Animated Gradient"
 		android:onClick="animatedGradientClicked"
 		/>
+
+	<Button
+		android:id="@+id/otherGradient"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="Other Gradient"
+		android:onClick="otherGradientClicked"
+		/>
+
+	<Button
+		android:id="@+id/javaGradient"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="Java compat activity Gradient"
+		android:onClick="javaGradientClicked"
+		/>
 </LinearLayout>

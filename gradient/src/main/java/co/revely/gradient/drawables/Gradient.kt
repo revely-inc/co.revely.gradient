@@ -67,16 +67,28 @@ class Gradient(
 				centerInit = true
 			}
 
-			val radius = Math.max(width, height) / 2f
+			rotateMatrix.setRotate(angle, centerX, centerY)
 			shader = when (type)
 			{
-				Type.LINEAR -> LinearGradient(0f, 0f, width.toFloat(), 0f, colors, offsets, tileMode)
-				Type.RADIAL -> RadialGradient(centerX, centerY, radius, colors, offsets, tileMode)
-				Type.SWEEP -> SweepGradient(centerX, centerY, colors, offsets)
+				Type.LINEAR -> {
+					val angleInRadian = Math.toRadians(angle.toDouble())
+					val w = Math.cos(angleInRadian).toFloat() * width / 2
+					val h = Math.sin(angleInRadian).toFloat() * height / 2
+					LinearGradient(centerX - w, centerY - h, centerX + w, centerY + h, colors, offsets, tileMode)
+				}
+				Type.RADIAL -> {
+					val radius = Math.max(width, height) / 2f
+					val shader = RadialGradient(centerX, centerY, radius, colors, offsets, tileMode)
+					shader.setLocalMatrix(rotateMatrix)
+					shader
+				}
+				Type.SWEEP -> {
+					val shader = SweepGradient(centerX, centerY, colors, offsets)
+					shader.setLocalMatrix(rotateMatrix)
+					shader
+				}
 			}
 
-			rotateMatrix.setRotate(angle, centerX, centerY)
-			shader!!.setLocalMatrix(rotateMatrix)
 			gradientPaint.reset()
 			gradientPaint.shader = shader
 			gradientPaint.alpha = gradientAlpha
@@ -105,11 +117,6 @@ class Gradient(
 
 	fun center(x: Float, y: Float)
 	{
-		if (type == Type.LINEAR)
-		{
-			Log.w(this.javaClass.simpleName, "Can't center a linear gradient !")
-			return
-		}
 		centerX = x
 		centerY = y
 		centerInit = true

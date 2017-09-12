@@ -21,17 +21,20 @@
 		<item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
 	</style>
 
-	<style name="AppThemeTest2" parent="AppTheme.NoActionBar">
+	<style name="AppThemeTextGradient" parent="AppTheme.NoActionBar">
 		<item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
 		<item name="colorPrimary">#fc4672</item>
 		<item name="colorPrimaryDark">#fc4672</item>
 		<item name="colorAccent">#ff8548</item>
 	</style>
 
-	<style name="AppThemeTest3" parent="AppTheme.NoActionBar">
+	<style name="AppThemeAnimatedGradient" parent="AppTheme.NoActionBar">
 		<item name="android:windowTranslucentStatus" tools:targetApi="kitkat">true</item>
 		<item name="colorPrimary">#4733FF</item>
 		<item name="colorPrimaryDark">#4733FF</item>
 		<item name="colorAccent">#C536FF</item>
+	</style>
+
+	<style name="AppThemeOtherGradient" parent="AppTheme.NoActionBar">
 	</style>
 </resources>
