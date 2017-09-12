@@ -20,8 +20,11 @@ class RevelyGradient(type: Gradient.Type)
 
 	companion object
 	{
+		@JvmStatic
 		fun linear(): RevelyGradient = RevelyGradient(Gradient.Type.LINEAR)
+		@JvmStatic
 		fun radial(): RevelyGradient = RevelyGradient(Gradient.Type.RADIAL)
+		@JvmStatic
 		fun sweep(): RevelyGradient = RevelyGradient(Gradient.Type.SWEEP)
 	}
 
