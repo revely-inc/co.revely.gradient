@@ -1,7 +1,7 @@
 RevelyGradient
 ========
 
-RevelyGradient an Android library for easy gradient management !
+RevelyGradient is an Android library for easy gradient management !
 
 About Revely
 ========
@@ -15,7 +15,7 @@ Installation
 Add the dependency
 ```groovy
 dependencies {
-    compile 'co.revely:gradient:0.0.1'
+    compile 'co.revely:gradient:1.0.0'
 }
 ```
 

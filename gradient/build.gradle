@@ -17,7 +17,7 @@ ext {
 	siteUrl = 'https://gitlab.com/revely/co.revely.gradient'
 	gitUrl = 'https://gitlab.com/revely/co.revely.gradient.git'
 
-	libraryVersion = '0.0.2'
+	libraryVersion = '1.0.0'
 
 	developerId = 'revely'
 	developerName = 'Revely'
@@ -35,7 +35,7 @@ android {
 	defaultConfig {
 		minSdkVersion 15
 		targetSdkVersion 26
-		versionCode 2
+		versionCode 3
 		versionName "$libraryVersion"
 
 		testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
