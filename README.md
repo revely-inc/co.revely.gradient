@@ -1,5 +1,6 @@
 RevelyGradient
 ========
+[ ![Download](https://api.bintray.com/packages/revely/maven/RevelyGradient/images/download.svg) ](https://bintray.com/revely/maven/RevelyGradient/_latestVersion)
 
 RevelyGradient is an Android library for easy gradient management !
 
