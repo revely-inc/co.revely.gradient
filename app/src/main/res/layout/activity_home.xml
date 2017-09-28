@@ -45,4 +45,12 @@
 		android:text="Java compat activity Gradient"
 		android:onClick="javaGradientClicked"
 		/>
+
+	<Button
+		android:id="@+id/layerGradient"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:text="Layer activity Gradient"
+		android:onClick="layerGradientClicked"
+		/>
 </LinearLayout>

@@ -45,6 +45,10 @@
 		<activity
 			android:name=".JavaGradientActivity"
 			/>
+
+		<activity
+			android:name=".LayerGradientActivity"
+			/>
 	</application>
 
 </manifest>

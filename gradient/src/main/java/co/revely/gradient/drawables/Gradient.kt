@@ -2,7 +2,6 @@ package co.revely.gradient.drawables
 
 import android.graphics.*
 import android.graphics.drawable.Drawable
-import android.util.Log
 
 /**
  * Created at 08/09/17
@@ -12,10 +11,11 @@ import android.util.Log
 class Gradient(
 		private var type: Type = Gradient.Type.LINEAR,
 		colors: IntArray = intArrayOf(Color.WHITE, Color.BLACK),
+		offsets: FloatArray? = null,
 		angle: Float = 0f,
 		tileMode: Shader.TileMode = Shader.TileMode.CLAMP,
-		private var gradientAlpha: Int = 255,
-		private var offsets: FloatArray? = null
+		private var radius: Float? = null,
+		private var gradientAlpha: Int = 255
 ) : Drawable()
 {
 	enum class Type
@@ -23,13 +23,15 @@ class Gradient(
 		LINEAR, RADIAL, SWEEP
 	}
 
-	private val rotateMatrix: Matrix = Matrix()
+	private val matrix: Matrix = Matrix()
 
 	private var rebuildGradient: Boolean = true
 	private var gradientPaint: Paint = Paint()
 	private var centerInit = false
 	private var centerX: Float = 0.0f
 	private var centerY: Float = 0.0f
+	private var scaleX: Float = 1.0f
+	private var scaleY: Float = 1.0f
 
 	var colors: IntArray = colors
 		set(colors)
@@ -37,14 +39,15 @@ class Gradient(
 			field = colors
 			rebuild()
 		}
+	var offsets: FloatArray? = offsets
+		set(offsets)
+		{
+			field = offsets
+			rebuild()
+		}
 	var angle: Float = angle
 		set(angle)
 		{
-			if (type == Type.RADIAL)
-			{
-				Log.w(this.javaClass.simpleName, "Angle is useless on radial gradient !")
-				return
-			}
 			field = angle
 			rebuild()
 		}
@@ -67,24 +70,28 @@ class Gradient(
 				centerInit = true
 			}
 
-			rotateMatrix.setRotate(angle, centerX, centerY)
+			matrix.setScale(scaleX, scaleY, centerX, centerY)
+			val matrixWithoutRotate = Matrix(matrix)
+			matrix.postRotate(angle, centerX, centerY)
 			shader = when (type)
 			{
 				Type.LINEAR -> {
 					val angleInRadian = Math.toRadians(angle.toDouble())
 					val w = Math.cos(angleInRadian).toFloat() * width / 2
 					val h = Math.sin(angleInRadian).toFloat() * height / 2
-					LinearGradient(centerX - w, centerY - h, centerX + w, centerY + h, colors, offsets, tileMode)
+					val shader = LinearGradient(centerX - w, centerY - h, centerX + w, centerY + h, colors, offsets, tileMode)
+					shader.setLocalMatrix(matrixWithoutRotate)
+					shader
 				}
 				Type.RADIAL -> {
-					val radius = Math.max(width, height) / 2f
-					val shader = RadialGradient(centerX, centerY, radius, colors, offsets, tileMode)
-					shader.setLocalMatrix(rotateMatrix)
+					val r = if (radius != null) radius else Math.max(width, height) / 2f
+					val shader = RadialGradient(centerX, centerY, r!!, colors, offsets, tileMode)
+					shader.setLocalMatrix(matrix)
 					shader
 				}
 				Type.SWEEP -> {
 					val shader = SweepGradient(centerX, centerY, colors, offsets)
-					shader.setLocalMatrix(rotateMatrix)
+					shader.setLocalMatrix(matrix)
 					shader
 				}
 			}
@@ -120,6 +127,13 @@ class Gradient(
 		centerX = x
 		centerY = y
 		centerInit = true
+		rebuild()
+	}
+
+	fun scale(x: Float, y: Float)
+	{
+		scaleX = x
+		scaleY = y
 		rebuild()
 	}
 

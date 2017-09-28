@@ -11,9 +11,9 @@ import co.revely.gradient.drawables.Gradient
  *
  * @author rbenjami
  */
-class RevelyGradient(type: Gradient.Type)
+class RevelyGradient(type: Gradient.Type, radius: Float? = null)
 {
-	private var gradient: Gradient = Gradient(type)
+	var gradient: Gradient = Gradient(type, radius=radius)
 
 	private lateinit var applyGradient: (() -> Unit)
 	private var onUpdate: ((valueAnimator: ValueAnimator, gradient: Gradient) -> Unit)? = null
@@ -23,9 +23,11 @@ class RevelyGradient(type: Gradient.Type)
 		@JvmStatic
 		fun linear(): RevelyGradient = RevelyGradient(Gradient.Type.LINEAR)
 		@JvmStatic
-		fun radial(): RevelyGradient = RevelyGradient(Gradient.Type.RADIAL)
+		fun radial(radius: Float? = null): RevelyGradient = RevelyGradient(Gradient.Type.RADIAL, radius)
 		@JvmStatic
 		fun sweep(): RevelyGradient = RevelyGradient(Gradient.Type.SWEEP)
+		@JvmStatic
+		fun layer(vararg gradients: RevelyGradient): LayerGradient = LayerGradient(gradients)
 	}
 
 	fun on(view: TextView)
@@ -65,6 +67,12 @@ class RevelyGradient(type: Gradient.Type)
 		return this
 	}
 
+	fun offsets(offsets: FloatArray): RevelyGradient
+	{
+		gradient.offsets = offsets
+		return this
+	}
+
 	fun alpha(alpha: Float): RevelyGradient
 	{
 		gradient.alpha = (alpha * 255).toInt()
@@ -83,13 +91,19 @@ class RevelyGradient(type: Gradient.Type)
 		return this
 	}
 
+	fun scale(x: Float, y: Float): RevelyGradient
+	{
+		gradient.scale(x, y)
+		return this
+	}
+
 	fun animate(valueAnimator: ValueAnimator, onUpdate: (valueAnimator: ValueAnimator, gradient: Gradient) -> Unit): RevelyGradient
 	{
 		this.onUpdate = onUpdate
 		valueAnimator.addUpdateListener { _valueAnimator ->
 			this.onUpdate!!(_valueAnimator, gradient)
 			gradient.rebuild()
-			applyGradient()
+			//applyGradient()
 		}
 		return this
 	}

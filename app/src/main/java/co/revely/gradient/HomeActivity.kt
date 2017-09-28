@@ -42,4 +42,9 @@ class HomeActivity : AppCompatActivity()
 	{
 		startActivity(Intent(this, JavaGradientActivity::class.java))
 	}
+
+	fun layerGradientClicked(view: View)
+	{
+		startActivity(Intent(this, LayerGradientActivity::class.java))
+	}
 }
