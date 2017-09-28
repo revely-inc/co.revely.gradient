@@ -16,7 +16,7 @@ Installation
 Add the dependency
 ```groovy
 dependencies {
-    compile 'co.revely:gradient:<version>'
+    compile 'co.revely:gradient:1.0.0'
 }
 ```
 
