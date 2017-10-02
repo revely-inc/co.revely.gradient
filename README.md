@@ -39,32 +39,73 @@ RevelyGradient
 ```
 
 ![demo_1](https://gitlab.com/revely/assets/raw/master/revely_gradient/background_gradient.gif)
-
-Kotlin
-```java
-RevelyGradient
-    .radial() // or .linear() or .sweep()
-    .angle(90f)
-    .center(100f, 200f)
-    .alpha(0.5f)
-    .colors(intArrayOf(Color.parseColor("#FF2525"), Color.parseColor("#6078EA"), Color.parseColor("#6078EA")))
-    .on(text_view) // or .onBackgroundOf(text_view)
-```
-
-Java
-```java
-RevelyGradient
-    .radial() // or .linear() or .sweep()
-    .angle(90)
-    .center(100, 200)
-    .alpha(0.5f)
-    .colors(new int[] {Color.parseColor("#FF2525"), Color.parseColor("#6078EA"), Color.parseColor("#6078EA")})
-    .on(findViewById(R.id.text_view)); // or .onBackgroundOf(findViewById(R.id.text_view))
-```
 ![demo_2](https://gitlab.com/revely/assets/raw/master/revely_gradient/text_gradient.png)
 
+Choose the type of your gradient
+```java
+.radial()
+.linear()
+.sweep()
+```
 
-Kotlin
+Choose the gradient colors
+```java
+.colors(intArrayOf(Color.parseColor("#FF2525"), Color.parseColor("#6078EA"), Color.parseColor("#6078EA")))
+```
+
+Center your gradient
+```java
+.center(100f, 200f)
+```
+
+Rotate the gradient around the center
+```java
+.angle(42)
+```
+
+Change the transparency of your gradient
+```java
+.alpha(0.5f)
+```
+
+Scale the gradient
+```java
+.scale(0.5f, 1f)
+```
+
+Change the positions of color in the gradient
+```java
+.offsets(floatArrayOf(0f, 0.1f, 0.5f, 1f))
+```
+
+Apply the gradient on the background of view
+```java
+.onBackgroundOf(text_view)
+```
+or directly on the view (TextView, ImageView, Button, ...)
+```java
+.on(text_view)
+```
+
+You can also use the layer function to stack several gradients
+```java
+.layer(
+    RevelyGradient
+        .radial(TypedValue.applyDimension( TypedValue.COMPLEX_UNIT_DIP, 150f, Resources.getSystem().displayMetrics ))
+        .colors(intArrayOf(Color.parseColor("#ffdd55"), Color.parseColor("#ffdd55"), Color.parseColor("#ff543e"), Color.parseColor("#c837ab")))
+        .offsets(floatArrayOf(0f, 0.1f, 0.5f, 1f))
+        .center(50, 400),
+    RevelyGradient
+        .radial(TypedValue.applyDimension( TypedValue.COMPLEX_UNIT_DIP, 170f, Resources.getSystem().displayMetrics ))
+        .colors(intArrayOf(Color.parseColor("#3771c8"), Color.parseColor("#3771c8"), Color.parseColor("#006600ff")))
+        .offsets(floatArrayOf(0f, 0.128f, 1f))
+        .angle(-15f)
+        .scale(1f, 0.4f)
+        .center(0, 0)
+).onBackgroundOf(view)
+```
+
+To animate your gradient use `.animate()`
 ```java
 val color1 = Color.parseColor("#00c6ff")
 val color2 = Color.parseColor("#ff72ff")
